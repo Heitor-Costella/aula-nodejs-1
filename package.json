@@ -12,6 +12,8 @@
     "karaoke": "node ./karaoke/player"
   },
   "dependencies": {
-    "chalk": "^4.1.2"
+    "chalk": "^4.1.2",
+    "express": "^5.2.1",
+    "nodemon": "^3.1.14"
   }
 }
