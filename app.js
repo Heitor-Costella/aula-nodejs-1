@@ -2,11 +2,32 @@
 const { Parte } = require('./karaoke/parte');
 const {musica, play} = require('./karaoke/player');
 
-console.log('Titulo da musica: ' + musica.nome);
+//acesso ao DAO
+//Vai retornar instância única e não a Classe
+const musicaDAO = require('./karaoke/DAO/MusicaDAO');
+
+/* EXEMPLOS de uso do DAO
+
+//consultar e obter uma musica
+musicaDAO.inserir('Sinais de Fogo', 'Preta Gil' );
+const minhaMusica = musicaDAO.buscarPorId(0);
+musicaDAO.adicionarPartes(0, new Parte('Quando você me vê...', 1100, 'parte1'));
+musicaDAO.atualizar(0, 'Novo nome', 'novoArtista');
+const novaMusica = musicaDAO.inserir( 'Billie Jean', 'Michael Jackson' );
+musicaDAO.adicionarPartes( novaMusica.id, new Parte('Billie Jean is not my lover...',1500, 'estrofe1') );
+
+const todas = musicaDAO.listarTodas();
+todas.forEach(m => {
+   console.log(JSON.stringify(m));
+     
+});
+
+Ignorar trecho entre comentários */
 
 
 // 1. Importar o Express
 const express = require('express');
+const MusicaDAO = require('./karaoke/DAO/MusicaDAO');
 
 // 2. Criar a aplicação (a "loja")
 const app = express();

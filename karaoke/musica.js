@@ -1,11 +1,16 @@
 
 class Musica {
 
-    constructor(nome, artista) {
+    constructor(nome, artista, id) {
         //atributos com this.atrib
         this.nome = nome;
         this.artista = artista;
         this.partes = []; // associacao com Parte
+        if(!id){ //sem id definido
+            this.id=null;
+        }else{
+            this.id = id;
+        }
     }
 
     //metodos
