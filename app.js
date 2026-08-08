@@ -130,9 +130,15 @@ app.get("/musica/:id/play", async (req, res) =>{
     }
 });
 
+// Middleware de erro genérico
+app.use((err, req, res, next) => {
+  console.error('Erro detectado:', err.message);
+  res.status(500).json({ erro: 'Erro interno do servidor' });
+});
 
 
 // 5. Abrir a loja (escutar a porta)
 app.listen(3000, () => {
     console.log('Servidor rodando em http://localhost:3000');
 });
+

@@ -1,0 +1,37 @@
+### 1. Listar todas as músicas (GET)
+GET http://localhost:3000/api/musicas
+Content-Type: application/json
+
+###
+
+### 2. Buscar música por ID (GET)
+GET http://localhost:3000/api/musicas/1
+Content-Type: application/json
+
+###
+
+### 3. Cadastrar nova música (POST)
+POST http://localhost:3000/api/musicas
+Content-Type: application/json
+
+{
+  "nome": "Everlong",
+  "artista": "Foo Fighters"
+}
+
+###
+
+### 4. Atualizar música (PUT)
+PUT http://localhost:3000/api/musicas/1
+Content-Type: application/json
+
+{
+  "nome": "My Hero (Versão Acústica)",
+  "artista": "Foo Fighters"
+}
+
+###
+
+### 5. Remover música (DELETE)
+DELETE http://localhost:3000/api/musicas/1
+Content-Type: application/json
