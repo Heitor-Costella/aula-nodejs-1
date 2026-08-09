@@ -1,57 +1,75 @@
 const { Musica } = require('../musica');
+const { Parte } = require('../parte');
 
 class MusicaDAO {
-  constructor() {
-    this.musicas = [];
-    this.proximoId = 1;
-    this._carregarDadosIniciais();
-  }
+    constructor() {
+        this.musicas = [];
+        this.proximoId = 1;
 
-  // Insere uma música inicial de exemplo ao iniciar a aplicação
-  _carregarDadosIniciais() {
-    const myHero = this.inserir('My Hero', 'Foo Fighters');
-    if (myHero && typeof myHero.addParte === 'function') {
-      myHero.addParte('Intro', 'Too bold or too proud...');
-      myHero.addParte('Refrão', 'There goes my hero...');
+        this._carregarDadosIniciais();
     }
-  }
 
-  // 1. Listar todas as músicas
-  listarTodas() {
-    return this.musicas;
-  }
+    listarTodas() {
+        return this.musicas;
+    }
 
-  // 2. Buscar por ID
-  buscarPorId(id) {
-    return this.musicas.find(m => m.id === Number(id)) || null;
-  }
+    buscarPorId(id) {
+        return this.musicas.find(m => m.id === id) || null;
+    }
 
-  // 3. Inserir nova música
-  inserir(nome, artista) {
-    const novaMusica = new Musica(nome, artista);
-    novaMusica.id = this.proximoId++;
-    this.musicas.push(novaMusica);
-    return novaMusica;
-  }
+    inserir(nome, artista) {
+        const novaMusica = new Musica(nome, artista);
 
-  // 4. Atualizar música existente
-  atualizar(id, nome, artista) {
-    const musica = this.buscarPorId(id);
-    if (!musica) return null;
+        novaMusica.id = this.proximoId;
+        this.proximoId++;
 
-    musica.nome = nome;
-    musica.artista = artista;
-    return musica;
-  }
+        this.musicas.push(novaMusica);
 
-  // 5. Remover música por ID
-  remover(id) {
-    const indice = this.musicas.findIndex(m => m.id === Number(id));
-    if (indice === -1) return null;
+        return novaMusica;
+    }
 
-    return this.musicas.splice(indice, 1)[0];
-  }
+    atualizar(id, nome, artista) {
+        const musica = this.buscarPorId(id);
+
+        if (!musica) {
+            return null;
+        }
+
+        musica.nome = nome;
+        musica.artista = artista;
+
+        return musica;
+    }
+
+    remover(id) {
+        const indice = this.musicas.findIndex(m => m.id === id);
+
+        if (indice === -1) {
+            return null;
+        }
+
+        return this.musicas.splice(indice, 1)[0];
+    }
+
+    _carregarDadosIniciais() {
+        const myHero = this.inserir('My Hero', 'Foo Fighters');
+
+        myHero.addParte(
+            new Parte(
+                'Too bold or too proud to see...',
+                1100,
+                'Intro'
+            )
+        );
+
+        myHero.addParte(
+            new Parte(
+                'There goes my hero, watch him as he goes...',
+                1100,
+                'Refrão'
+            )
+        );
+    }
 }
 
-// Exporta uma única instância da classe (Padrão Singleton)
 module.exports = new MusicaDAO();
