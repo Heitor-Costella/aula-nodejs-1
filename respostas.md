@@ -2,7 +2,11 @@ Respostas — API do Karaokê
 
 1. Status Codes
 
-200 OK: requisição realizada com sucesso, como listar as músicas. 201 Created: usado quando uma nova música é criada. 400 Bad Request: usado quando os dados enviados estão errados ou faltando. 404 Not Found: usado quando a música procurada não existe. 500 Internal Server Error: usado quando acontece um erro no servidor.
+200 OK: requisição realizada com sucesso, como listar as músicas. 
+201 Created: usado quando uma nova música é criada. 
+400 Bad Request: usado quando os dados enviados estão errados ou faltando. 
+404 Not Found: usado quando a música procurada não existe. 
+500 Internal Server Error: usado quando acontece um erro no servidor.
 
 2. Content-Type
 
